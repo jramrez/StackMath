@@ -13,14 +13,14 @@
         System.out.println("Enter a math equation as a POSTFIX expression (e.g. 5 8 +):");
         String inpt = scan.nextLine(); //prompt and scan
         Scanner inptScan = new Scanner(inpt); //scans the input itself 
-        inptScan.useDelimiter(" "); 
+        inptScan.useDelimiter(" ");  //this separates the numbers and operators as the scanner reads up to a space, allowing for 2+ digit numbers
 
-        for (int count = 0; count <= numSpaces(inpt); count++) {
-            String current = inptScan.next();
-            if (ifOperator(current)) {
+        for (int count = 0; count <= numSpaces(inpt); count++) { // for loop keeps the function in check
+            String current = inptScan.next();  // scanner of the input in use
+            if (ifOperator(current)) { // if the current section of the string is an operator, it does this
                 stacker.push(returnResult(current, stacker.pop(), stacker.pop()));
             }
-            else {
+            else { // otherwise it parses it and pushes it in the stack
                 stacker.push(Double.parseDouble(current));
             }
         }
